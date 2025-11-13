@@ -16,7 +16,7 @@ Tudo operando via menu em terminal, ...
 ## ❓ Features/Recursos do jogo:
 1. Sistema de dinheiro (em token fictício "CoffeeCoins") e sistema de XP, ambos adquiridos ao trabalhar!
 2. Lojinha! Gaste suas CoffeeCoins aqui, existem os cursos e os acessórios personalizáveis!
-3. Os cursos poder aumentar seu nível de XP, te tornando mais apto a subir de cargo, ou então podem liberar novas formas de trabalho!
+3. Os cursos podem aumentar seu nível de XP, te tornando mais apto a subir de cargo, ou então podem liberar novas formas de trabalho!
 4. Acessórios personalizáves para tornar sua experiência no jogo única, deixando tudo do seu jeito!
 5. ...
 
