@@ -3,7 +3,7 @@ package jornadadev;
 import jornadadev.core.GameEngine;
 
 /**
- * Classe de entrada do jogo Jornada do Dev — Startup Solana.
+ * Classe de entrada do jogo Jornada do Dev - Startup Solana.
  */
 public class Main {
 

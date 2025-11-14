@@ -72,9 +72,9 @@ public class GameEngine {
      * Inicia o loop principal do jogo.
      */
     public void iniciar() {
-        System.out.println("────────────────────────────────────────────");
-        System.out.println("         🚀 STARTUP SOLANA — JORNADA DO DEV");
-        System.out.println("────────────────────────────────────────────");
+        System.out.println("--------------------------------------------");
+        System.out.println("         STARTUP SOLANA - JORNADA DO DEV");
+        System.out.println("--------------------------------------------");
         System.out.print("Digite o nome do(a) dev: ");
         String nome = scanner.nextLine().trim();
         if (nome.isEmpty()) {
@@ -89,7 +89,7 @@ public class GameEngine {
 
     private void configurarInventarioInicial() {
         temaPadrao = new TemaXP("Tema Padrão", 0, Raridade.COMUM, "", 10, "=", "-");
-        badgePadrao = new Badge("Badge Café Lover", 0, Raridade.COMUM, "[☕]", "Café Lover");
+        badgePadrao = new Badge("Badge Café Lover", 0, Raridade.COMUM, "[Cafe]", "Café Lover");
         petPadrao = new Pet("Gato Byte", 0, Raridade.COMUM, " /\\_/\\\n( o.o )\n > ^ <");
         desenvolvedor.getInventario().adicionarTema(temaPadrao);
         desenvolvedor.getInventario().adicionarBadge(badgePadrao);
@@ -116,21 +116,21 @@ public class GameEngine {
 
         // Pets
         adicionarItemLoja(new Pet("Lhama Café", 120, Raridade.COMUM, " (^^ )\n/|:::|\\\n  UU"), null);
-        adicionarItemLoja(new Pet("Solana Fox", 280, Raridade.INCOMUM, " /\\  /\\\n( ⌐■_■)\n \\_/\\/"), CURSO_GIT);
+        adicionarItemLoja(new Pet("Solana Fox", 280, Raridade.INCOMUM, " /\\  /\\\n( -o_o)\n \\_/\\/"), CURSO_GIT);
         adicionarItemLoja(new Pet("Neon Kraken", 780, Raridade.RARO, " (]~~)\n/|  |\\\n^^  ^^"), CURSO_DEVOPS);
-        adicionarItemLoja(new Pet("Titã Mascote", 1800, Raridade.LENDARIO, "  /\\__/\\\n ( ⚆_⚆ )\n  /    \\"), CURSO_LIDERANCA);
+        adicionarItemLoja(new Pet("Titã Mascote", 1800, Raridade.LENDARIO, "  /\\__/\\\n ( o_o )\n  /    \\"), CURSO_LIDERANCA);
 
         // Badges
         adicionarItemLoja(new Badge("Badge Bug Slayer", 240, Raridade.INCOMUM, "<BUG>", "Bug Slayer"), CURSO_GIT);
         adicionarItemLoja(new Badge("Badge Chain Master", 620, Raridade.RARO, "{SOL}", "Chain Master"), CURSO_DEVOPS);
-        adicionarItemLoja(new Badge("Badge Titan Founder", 1500, Raridade.LENDARIO, "[🔥]", "Titan Founder"),
+        adicionarItemLoja(new Badge("Badge Titan Founder", 1500, Raridade.LENDARIO, "[Fogo]", "Titan Founder"),
                 CURSO_LIDERANCA);
 
         // Temas XP
-        adicionarItemLoja(new TemaXP("Tema Caféinômico", 150, Raridade.COMUM, "", 12, "☕", "."), CURSO_BASICO);
-        adicionarItemLoja(new TemaXP("Tema Pixelado", 320, Raridade.INCOMUM, "", 14, "▓", "░"), CURSO_FRONT);
-        adicionarItemLoja(new TemaXP("Tema Solana Wave", 800, Raridade.RARO, "", 16, "~", "∙"), CURSO_DEVOPS);
-        adicionarItemLoja(new TemaXP("Tema Mítico Titãs", 3800, Raridade.MITICO, "", 18, "🔥", "░"),
+        adicionarItemLoja(new TemaXP("Tema Caféinômico", 150, Raridade.COMUM, "", 12, "C", "."), CURSO_BASICO);
+        adicionarItemLoja(new TemaXP("Tema Pixelado", 320, Raridade.INCOMUM, "", 14, "#", "."), CURSO_FRONT);
+        adicionarItemLoja(new TemaXP("Tema Solana Wave", 800, Raridade.RARO, "", 16, "~", "."), CURSO_DEVOPS);
+        adicionarItemLoja(new TemaXP("Tema Mítico Titãs", 3800, Raridade.MITICO, "", 18, "*", "."),
                 CURSO_LIDERANCA);
 
         // Slogans
@@ -183,9 +183,9 @@ public class GameEngine {
     }
 
     private void exibirMenuPrincipal() {
-        System.out.println("\n────────────────────────────────────────────");
-        System.out.println("         🚀 STARTUP SOLANA — JORNADA DO DEV");
-        System.out.println("────────────────────────────────────────────");
+        System.out.println("\n--------------------------------------------");
+        System.out.println("         STARTUP SOLANA - JORNADA DO DEV");
+        System.out.println("--------------------------------------------");
         Pet pet = desenvolvedor.getPetAtual();
         if (pet != null) {
             System.out.println(pet.getAsciiArt());
@@ -195,36 +195,36 @@ public class GameEngine {
         String badgeTexto = desenvolvedor.getBadgeAtual() != null ? desenvolvedor.getBadgeAtual().getTextoBadge()
                 : "Sem badge";
         String nomePet = pet != null ? pet.getNome() : "Nenhum";
-        System.out.print("👤 Dev: " + desenvolvedor.getNome());
+        System.out.print("Dev: " + desenvolvedor.getNome());
         if (desenvolvedor.getBadgeAtual() != null) {
             System.out.print("  " + desenvolvedor.getBadgeAtual().getAsciiArt());
         }
         System.out.println();
-        System.out.println("🏷 Badge: " + badgeTexto + "   🐾 Pet: " + nomePet);
-        System.out.println("💼 Cargo: " + desenvolvedor.getCargoAtual().getNomeExibicao());
+        System.out.println("Badge: " + badgeTexto + "   Pet: " + nomePet);
+        System.out.println("Cargo: " + desenvolvedor.getCargoAtual().getNomeExibicao());
         if (desenvolvedor.getSloganAtual() != null) {
-            System.out.println("📣 Slogan: " + desenvolvedor.getSloganAtual().getFrase());
+            System.out.println("Slogan: " + desenvolvedor.getSloganAtual().getFrase());
         }
-        System.out.printf("💰 CC$: %.0f CC$%n", desenvolvedor.getSaldoCoffeeCoins());
-        System.out.println("⭐ XP: " + gerarBarraXp());
+        System.out.printf("Moedas (CC$): %.0f CC$%n", desenvolvedor.getSaldoCoffeeCoins());
+        System.out.println("XP Atual: " + gerarBarraXp());
         if (eventoAtivo != null && eventoAtivo.estaAtivo()) {
-            System.out.println("⚡ Evento ativo: " + eventoAtivo.getNome() + " — " + eventoAtivo.getDescricao()
+            System.out.println("Evento ativo: " + eventoAtivo.getNome() + " - " + eventoAtivo.getDescricao()
                     + " (restam " + eventoAtivo.getTurnosRestantes() + " turnos)");
         }
         if (desenvolvedor.isModoTitanAtivo()) {
-            System.out.println("🔥 Modo Titã pulsando em suas veias.");
+            System.out.println("Modo Titã pulsando em suas veias.");
         }
-        System.out.println("────────────────────────────────────────────");
-        System.out.println("[1] ☕ Trabalhar");
-        System.out.println("[2] 📚 Loja");
-        System.out.println("[3] 💼 Subir de Cargo");
-        System.out.println("[4] 🗃 Inventário");
+        System.out.println("--------------------------------------------");
+        System.out.println("[1] Trabalhar");
+        System.out.println("[2] Loja");
+        System.out.println("[3] Subir de Cargo");
+        System.out.println("[4] Inventário");
         if (desenvolvedor.getCargoAtual() == Cargo.CEO) {
-            System.out.println("[5] 🌙 ???");
+            System.out.println("[5] ???");
         } else {
-            System.out.println("[5] 🌙 ??? (bloqueado até CEO)");
+            System.out.println("[5] ??? (bloqueado até CEO)");
         }
-        System.out.println("[6] 🚪 Sair");
+        System.out.println("[6] Sair");
         System.out.print("Digite uma opção: ");
     }
 
@@ -239,7 +239,7 @@ public class GameEngine {
             StringBuilder builder = new StringBuilder();
             builder.append("XP: [");
             for (int i = 0; i < tamanho; i++) {
-                builder.append(i < preenchidos ? "🔥" : "░");
+                builder.append(i < preenchidos ? "*" : ".");
             }
             builder.append("] ");
             builder.append((int) Math.round(percentual * 100)).append("%");
@@ -258,7 +258,7 @@ public class GameEngine {
         System.out.println("Selecione um trabalho:");
         for (int i = 0; i < projetos.size(); i++) {
             Projeto projeto = projetos.get(i);
-            System.out.printf("(%d) %s — 💰 %.0f CC$ | ⭐ %d XP%n", i + 1, projeto.getNome(),
+            System.out.printf("(%d) %s - CC$: %.0f | XP: %d%n", i + 1, projeto.getNome(),
                     projeto.getRecompensaBase(), projeto.getXpBase());
         }
         System.out.println("(0) Voltar");
@@ -275,7 +275,7 @@ public class GameEngine {
         if (eventoAtivo == null) {
             eventoAtivo = EventoAleatorio.gerarAleatorio(random);
             if (eventoAtivo != null) {
-                System.out.println("🌪 Novo evento: " + eventoAtivo.getNome() + " — " + eventoAtivo.getDescricao());
+                System.out.println("Novo evento: " + eventoAtivo.getNome() + " - " + eventoAtivo.getDescricao());
             }
         }
     }
@@ -327,7 +327,7 @@ public class GameEngine {
     private void menuLoja() {
         boolean naLoja = true;
         while (naLoja) {
-            System.out.println("\n📦 Loja da Startup");
+            System.out.println("\nLoja da Startup");
             System.out.println("(1) Aba de Cursos");
             System.out.println("(2) Aba de Personalização");
             System.out.println("(0) Voltar");
@@ -362,7 +362,7 @@ public class GameEngine {
         for (int i = 0; i < cursos.size(); i++) {
             Curso curso = cursos.get(i);
             String status = desenvolvedor.possuiCurso(curso.getNome()) ? "(concluído)" : "";
-            System.out.printf("(%d) %s — Preço: %.0f CC$ | XP: %d %s%n", i + 1, curso.getNome(), curso.getPreco(),
+            System.out.printf("(%d) %s - Preço: %.0f CC$ | XP: %d %s%n", i + 1, curso.getNome(), curso.getPreco(),
                     curso.getXpConcedido(), status);
             System.out.println("     -> " + curso.getDescricao());
         }
@@ -402,7 +402,7 @@ public class GameEngine {
         System.out.println("Itens disponíveis:");
         for (int i = 0; i < filtrados.size(); i++) {
             ItemPersonalizacao item = filtrados.get(i);
-            System.out.printf("(%d) [%s] %s — Preço: %.0f CC$%n", i + 1, item.getTipo(), item.getNome(),
+            System.out.printf("(%d) [%s] %s - Preço: %.0f CC$%n", i + 1, item.getTipo(), item.getNome(),
                     item.getPreco());
         }
         System.out.println("(0) Voltar");
@@ -475,7 +475,7 @@ public class GameEngine {
             desenvolvedor.promover();
             System.out.println("Parabéns! Novo cargo: " + desenvolvedor.getCargoAtual().getNomeExibicao());
             if (desenvolvedor.getCargoAtual() == Cargo.CEO) {
-                System.out.println("Desbloqueou o menu misterioso 🌙 ???");
+                System.out.println("Desbloqueou o menu misterioso.");
             }
         } else {
             System.out.println("Reprovado por pouco! Reveja aqueles slides duvidosos.");
@@ -676,10 +676,10 @@ public class GameEngine {
 
     private void ativarModoTitan() {
         desenvolvedor.ativarModoTitan();
-        System.out.println("💥 TRANSFORMAÇÃO EM TITÃ ATIVADA 💥");
-        System.out.println("         ( ⚆_⚆ )  << olhos verdes brilhando");
-        System.out.println("🔥 Você sente muita fome.");
-        System.out.println("🔥 Sua energia desperta como a de um Titã.");
+        System.out.println("TRANSFORMAÇÃO EM TITÃ ATIVADA");
+        System.out.println("         ( o_o )  << olhos verdes brilhando");
+        System.out.println("Você sente muita fome.");
+        System.out.println("Sua energia desperta como a de um Titã.");
     }
 
     private int lerOpcaoNumerica(int minimo, int maximo) {

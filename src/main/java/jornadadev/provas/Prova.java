@@ -25,7 +25,7 @@ public class Prova {
         int acertos = 0;
         int numeroQuestao = 1;
         for (Pergunta pergunta : perguntas) {
-            System.out.println("────────────────────────────────────────────");
+            System.out.println("--------------------------------------------");
             System.out.println("Questão " + numeroQuestao++ + ": " + pergunta.getEnunciado());
             String[] alternativas = pergunta.getAlternativas();
             for (int i = 0; i < alternativas.length; i++) {
@@ -33,10 +33,10 @@ public class Prova {
             }
             int resposta = lerResposta(scanner, alternativas.length);
             if (resposta - 1 == pergunta.getIndiceCorreto()) {
-                System.out.println("✅ Resposta correta!");
+                System.out.println("Resposta correta!");
                 acertos++;
             } else {
-                System.out.println("❌ Resposta incorreta!");
+                System.out.println("Resposta incorreta!");
             }
         }
         System.out.println("Você acertou " + acertos + " de " + perguntas.size() + " questões.");
