@@ -40,13 +40,29 @@ public abstract class Projeto {
         return xpBase;
     }
 
+    /**
+     * Calcula o XP realmente concedido por um trabalho comum. Trabalhar deve
+     * render apenas uma fração simbólica do valor original para incentivar a
+     * busca por cursos como principal fonte de experiência.
+     */
+    public int getXpTrabalho() {
+        if (xpBase <= 0) {
+            return 0;
+        }
+        int reduzido = xpBase / 10;
+        if (reduzido <= 0) {
+            reduzido = 1;
+        }
+        return reduzido;
+    }
+
     protected String fraseHumor(Random random) {
         return FRASES_HUMOR[random.nextInt(FRASES_HUMOR.length)];
     }
 
     public void concluir(Desenvolvedor desenvolvedor, EventoAleatorio evento, Random random) {
         double recompensaFinal = recompensaBase;
-        int xpFinal = xpBase;
+        int xpFinal = getXpTrabalho();
 
         if (evento != null && evento.estaAtivo()) {
             recompensaFinal = evento.aplicarNoDinheiro(recompensaFinal);

@@ -39,6 +39,7 @@ import jornadadev.projetos.RefatorarModuloCriticoProjeto;
 import jornadadev.projetos.ReuniaoInutilProjeto;
 import jornadadev.projetos.ResolverBugSimplesProjeto;
 import jornadadev.projetos.AuditoriaSolanaProjeto;
+import jornadadev.provas.Pergunta;
 
 /**
  * Motor principal do jogo.
@@ -60,6 +61,9 @@ public class GameEngine {
     private TemaXP temaPadrao;
     private Pet petPadrao;
     private Badge badgePadrao;
+    private Pet recompensaTitanPet;
+    private Badge recompensaTitanBadge;
+    private TemaXP recompensaTitanTema;
     private final Map<String, String> requisitoCursoParaItem;
 
     public GameEngine() {
@@ -97,6 +101,13 @@ public class GameEngine {
         desenvolvedor.setTemaAtual(temaPadrao);
         desenvolvedor.setBadgeAtual(badgePadrao);
         desenvolvedor.setPetAtual(petPadrao);
+        configurarRecompensasTitan();
+    }
+
+    private void configurarRecompensasTitan() {
+        recompensaTitanPet = new Pet("Titã Vigia", 0, Raridade.MITICO, " /\\_/\\\\\n( o_O )\n/| TT |\\");
+        recompensaTitanBadge = new Badge("Badge Olhar de Titã", 0, Raridade.MITICO, "[TITAN]", "Olhar de Titã");
+        recompensaTitanTema = new TemaXP("Tema Núcleo Titã", 0, Raridade.MITICO, "", 20, "#", "-");
     }
 
     private void configurarLoja() {
@@ -259,7 +270,7 @@ public class GameEngine {
         for (int i = 0; i < projetos.size(); i++) {
             Projeto projeto = projetos.get(i);
             System.out.printf("(%d) %s - CC$: %.0f | XP: %d%n", i + 1, projeto.getNome(),
-                    projeto.getRecompensaBase(), projeto.getXpBase());
+                    projeto.getRecompensaBase(), projeto.getXpTrabalho());
         }
         System.out.println("(0) Voltar");
         int escolha = lerOpcaoNumerica(0, projetos.size());
@@ -486,47 +497,116 @@ public class GameEngine {
         jornadadev.provas.Prova prova;
         if (cargoAtual == Cargo.SENIOR) {
             prova = new jornadadev.provas.Prova(15);
-            adicionarPerguntasBasicas(prova, true);
         } else {
             prova = new jornadadev.provas.Prova(5);
-            adicionarPerguntasBasicas(prova, false);
         }
+        adicionarPerguntasPorCargo(prova, cargoAtual);
         System.out.println("Hora da prova! Respire e lembre do Ctrl+S.");
         return prova.aplicar(scanner);
     }
 
-    private void adicionarPerguntasBasicas(jornadadev.provas.Prova prova, boolean provaCEO) {
-        String[][] questoes = {
-                { "Qual comando git envia commits para o servidor?", "git push", "git coffee", "git whisper", "1" },
-                { "Qual linguagem roda na JVM?", "Java", "HTML", "EmojiScript", "1" },
-                { "O que significa CI/CD?", "Integração Contínua / Entrega Contínua", "Café Instantâneo", "Código Infinito", "1" },
-                { "Qual porta padrão do HTTP?", "80", "404", "1337", "1" },
-                { "Qual algoritmo ordena bolhas?", "Bubble Sort", "Quicksort", "Mocha Sort", "1" },
-                { "O que significa SOL em Solana?", "A cripto da rede", "Só luz", "Sistema operacional Linux", "1" },
-                { "Qual framework faz sentido para REST?", "Spring", "Swingline", "Spork", "1" },
-                { "Qual comando compila um projeto Java?", "javac", "java run", "npm install", "1" },
-                { "Qual item armazena pares chave-valor?", "Map", "List", "Loop", "1" },
-                { "Blockchain serve para?", "Registrar transações", "Assar bolos", "Fazer memes", "1" },
-                { "Solana é conhecida por?", "Baixa latência", "Criar pizzas", "Controlar satélites", "1" },
-                { "Qual método inicia uma aplicação Java?", "main", "startApp", "goGoGo", "1" },
-                { "Em orientação a objetos, herança permite?", "Reutilizar comportamentos", "Comprar cafés", "Criar NFTs", "1" },
-                { "Qual estrutura controla exceções?", "try/catch", "if/for", "print", "1" },
-                { "Qual o mascote secreto da startup?", "Lhama Café", "Pato USB", "Cão Cobol", "1" },
-                { "Quantos bits tem um byte?", "8", "12", "42", "1" },
-                { "Qual banco roda em memória?", "H2", "S3", "FTP", "1" },
-                { "Qual API java lê entrada?", "Scanner", "Reader Jr.", "KeyCatcher", "1" },
-                { "O que significa NFT?", "Token não fungível", "Novo framework top", "Notícia fria tech", "1" },
-                { "Qual o lema dos devs Solana?", "Escalar sem travar", "Fugir das daily", "Fazer merge sem review", "1" } };
-        int limite = provaCEO ? questoes.length : 9;
-        for (int i = 0; i < limite; i++) {
-            String[] q = questoes[i];
-            prova.adicionarPergunta(new jornadadev.provas.Pergunta(q[0], new String[] { q[1], q[2], q[3] },
-                    Integer.parseInt(q[4]) - 1));
+    private void adicionarPerguntasPorCargo(jornadadev.provas.Prova prova, Cargo cargoAtual) {
+        switch (cargoAtual) {
+            case ESTAGIARIO_CAFE:
+                adicionarPergunta(prova, "Qual comando git lista o estado atual do repositório?", "git status",
+                        "git checkin", "git files", 0);
+                adicionarPergunta(prova, "Qual palavra-chave em Java define uma classe?", "define", "class", "module", 1);
+                adicionarPergunta(prova, "Qual estrutura repete enquanto a condição é verdadeira?", "if", "switch",
+                        "while", 2);
+                adicionarPergunta(prova, "Qual tipo primitivo armazena números inteiros?", "String", "int", "boolean", 1);
+                adicionarPergunta(prova, "Qual método imprime texto no console?", "System.out.println", "console.log",
+                        "print()", 0);
+                adicionarPergunta(prova, "Ao clonar um repositório remoto usa-se qual comando?", "git copy", "git clone",
+                        "git pull", 1);
+                break;
+            case ESTAGIARIO_DEV:
+                adicionarPergunta(prova, "Qual comando combina commits de uma branch na atual?", "git clone", "git status",
+                        "git merge", 2);
+                adicionarPergunta(prova, "Qual arquivo descreve dependências em um projeto Maven?", "build.gradle",
+                        "pom.xml", "package-lock.json", 1);
+                adicionarPergunta(prova, "Qual tipo representa texto imutável em Java?", "String", "StringBuilder",
+                        "char", 0);
+                adicionarPergunta(prova, "Qual anotação indica sobrescrita de método?", "@Inject", "@Bean",
+                        "@Override", 2);
+                adicionarPergunta(prova, "Qual estrutura mantém ordem de inserção e pares chave-valor?", "HashSet",
+                        "TreeMap", "LinkedHashMap", 2);
+                adicionarPergunta(prova, "Qual comando atualiza o repositório local com mudanças remotas?", "git pull",
+                        "git revert", "git stash", 0);
+                break;
+            case JUNIOR:
+                adicionarPergunta(prova, "Qual status HTTP indica que um recurso foi criado?", "200", "201", "404", 1);
+                adicionarPergunta(prova, "No Spring Boot, qual anotação expõe um endpoint REST?", "@RestController",
+                        "@Entity", "@Repository", 0);
+                adicionarPergunta(prova, "Qual estrutura mantém chave-valor em ordem natural?", "HashMap", "TreeMap",
+                        "LinkedList", 1);
+                adicionarPergunta(prova, "Qual anotação injeta dependência pelo construtor?", "@Value", "@Component",
+                        "@Autowired", 2);
+                adicionarPergunta(prova, "Qual padrão isola o acesso a dados do domínio?", "Observer", "Composite",
+                        "Repository", 2);
+                adicionarPergunta(prova, "Qual classe de concorrência representa uma fila bloqueante?", "ArrayList",
+                        "LinkedBlockingQueue", "StringBuffer", 1);
+                break;
+            case PLENO:
+                adicionarPergunta(prova, "Qual serviço gerencia pipelines dentro do GitHub?", "GitHub Actions",
+                        "Git SVN", "Git Flow", 0);
+                adicionarPergunta(prova, "No Docker, qual comando inicia um container a partir de uma imagem?",
+                        "docker build", "docker stop", "docker run", 2);
+                adicionarPergunta(prova, "Qual métrica acompanha a latência percebida pelos usuários?", "CPU idle",
+                        "P95 de resposta", "Tamanho do log", 1);
+                adicionarPergunta(prova, "Qual padrão arquitetural facilita eventos assíncronos?", "Event sourcing",
+                        "Singleton", "Adapter", 0);
+                adicionarPergunta(prova, "Qual ferramenta IaC utiliza arquivos com extensão .tf?", "Ansible", "Puppet",
+                        "Terraform", 2);
+                adicionarPergunta(prova, "Qual comando reescreve commits locais antes de enviar?", "git revert",
+                        "git rebase -i", "git status", 1);
+                break;
+            case SENIOR:
+                adicionarPergunta(prova, "Em arquitetura hexagonal, o que são as portas?", "Classes de teste",
+                        "Interfaces que expõem casos de uso", "Scripts de build", 1);
+                adicionarPergunta(prova, "Qual engine de mensagens usa AMQP 0-9-1 por padrão?", "RabbitMQ", "Kafka",
+                        "Redis Streams", 0);
+                adicionarPergunta(prova, "Qual técnica baseia o consenso Raft?", "Proof of Work", "Protocolo Gossip",
+                        "Eleição de líder com log replicado", 2);
+                adicionarPergunta(prova, "Qual métrica SRE mede o tempo até recuperação?", "MTTR", "MTTF", "MTBF", 0);
+                adicionarPergunta(prova, "No Kubernetes, qual objeto mantém o estado desejado de pods?", "Service",
+                        "Deployment", "ConfigMap", 1);
+                adicionarPergunta(prova, "Qual estratégia de rollout reduz tráfego antigo gradualmente?", "Blue-green",
+                        "Recreate", "Canary", 2);
+                adicionarPergunta(prova, "Em DDD, qual elemento coordena lógica entre agregados?", "Entity",
+                        "Domain Service", "Value Object", 1);
+                adicionarPergunta(prova, "Qual formato binário é usado pelo gRPC por padrão?", "Protocol Buffers",
+                        "YAML", "Thrift", 0);
+                adicionarPergunta(prova, "Qual comando git mantém alterações no stage ao desfazer um commit?",
+                        "git revert HEAD", "git reset --hard HEAD~1", "git reset --soft HEAD~1", 2);
+                adicionarPergunta(prova, "Qual técnica distribui carga global usando roteamento de borda?", "Sticky session",
+                        "Anycast DNS", "Web socket", 1);
+                adicionarPergunta(prova, "Qual ferramenta consulta métricas com PromQL?", "Prometheus",
+                        "Grafana Loki", "Zipkin", 0);
+                adicionarPergunta(prova, "Qual nível de consistência garante que leituras respeitam ordem causal?",
+                        "Consistência eventual", "Consistência forte", "Consistência causal", 2);
+                adicionarPergunta(prova, "Qual mecanismo do PostgreSQL habilita replicação lógica?", "Logical Decoding",
+                        "Hot standby", "Autovacuum", 0);
+                adicionarPergunta(prova, "Qual abordagem verifica compatibilidade entre serviços?", "Testes unitários",
+                        "Testes de contrato", "Testes de fumaça", 1);
+                adicionarPergunta(prova, "Qual política segue o princípio nunca confiar, sempre verificar?",
+                        "OAuth2 Client Credentials", "Basic Auth", "Zero Trust", 2);
+                adicionarPergunta(prova, "Qual biblioteca Java provê fluxos reativos assíncronos?", "Project Reactor",
+                        "JUnit", "JDBC", 0);
+                adicionarPergunta(prova, "Qual algoritmo de cache remove o item menos utilizado recentemente?", "FIFO",
+                        "LRU", "Round Robin", 1);
+                adicionarPergunta(prova, "Qual comando kubectl aplica alterações mantendo histórico?", "kubectl delete -f",
+                        "kubectl get -f", "kubectl apply -f", 2);
+                break;
+            default:
+                adicionarPerguntasPorCargo(prova, Cargo.ESTAGIARIO_CAFE);
+                break;
         }
-        if (!provaCEO) {
-            prova.adicionarPergunta(new jornadadev.provas.Pergunta(
-                    "Qual criptomoeda patrocina sua startup?", new String[] { "Solana", "Dogecoin", "Real" }, 0));
-        }
+    }
+
+    private void adicionarPergunta(jornadadev.provas.Prova prova, String enunciado, String alternativa1,
+            String alternativa2, String alternativa3, int indiceCorreto) {
+        prova.adicionarPergunta(new Pergunta(enunciado, new String[] { alternativa1, alternativa2, alternativa3 },
+                indiceCorreto));
     }
 
     private void menuInventario() {
@@ -676,10 +756,33 @@ public class GameEngine {
 
     private void ativarModoTitan() {
         desenvolvedor.ativarModoTitan();
+        concederRecompensasTitan();
         System.out.println("TRANSFORMAÇÃO EM TITÃ ATIVADA");
         System.out.println("         ( o_o )  << olhos verdes brilhando");
         System.out.println("Você sente muita fome.");
         System.out.println("Sua energia desperta como a de um Titã.");
+    }
+
+    private void concederRecompensasTitan() {
+        if (recompensaTitanPet == null || recompensaTitanBadge == null || recompensaTitanTema == null) {
+            configurarRecompensasTitan();
+        }
+        jornadadev.model.Inventario inventario = desenvolvedor.getInventario();
+        if (!inventario.possuiPet(recompensaTitanPet.getNome())) {
+            inventario.adicionarPet(recompensaTitanPet);
+            desenvolvedor.setPetAtual(recompensaTitanPet);
+            System.out.println("Titã Vigia agora responde ao seu chamado.");
+        }
+        if (!inventario.possuiBadge(recompensaTitanBadge.getNome())) {
+            inventario.adicionarBadge(recompensaTitanBadge);
+            desenvolvedor.setBadgeAtual(recompensaTitanBadge);
+            System.out.println("Badge Olhar de Titã se fixou no seu crachá.");
+        }
+        if (!inventario.possuiTema(recompensaTitanTema.getNome())) {
+            inventario.adicionarTema(recompensaTitanTema);
+            desenvolvedor.setTemaAtual(recompensaTitanTema);
+            System.out.println("Tema Núcleo Titã iluminou sua barra de XP.");
+        }
     }
 
     private int lerOpcaoNumerica(int minimo, int maximo) {
