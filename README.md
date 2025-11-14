@@ -16,14 +16,14 @@ Cada ação é realizada via menu no terminal, permitindo:
 A experiência combina gerenciamento de recursos, evolução de habilidades e eventos aleatórios que afetam o desempenho em cada rodada.
 
 ## ❓ Features/Recursos
-1. Sistema econômico baseado em CoffeeCoins e ganho de experiência para desbloquear novos cargos e atividades.
-2. Loja com duas abas distintas (cursos e personalização), permitindo investir em progresso técnico ou em itens cosméticos.
-3. Conjunto de projetos desbloqueados por cargo, garantindo desafios diferentes conforme o jogador avança na carreira.
-4. Provas de promoção com perguntas de múltipla escolha que testam conhecimentos antes de conceder novos cargos.
-5. Eventos aleatórios positivos ou negativos que modificam recompensas temporariamente, mantendo cada sessão imprevisível.
+1. `Sistema econômico` baseado em CoffeeCoins e ganho de experiência para desbloquear novos cargos e atividades.
+2. `Loja` com duas abas distintas (cursos e personalização), permitindo investir em progresso técnico ou em itens cosméticos.
+3. `Conjunto de projetos` desbloqueados por cargo, garantindo desafios diferentes conforme o jogador avança na carreira.
+4. `Provas de promoção` com perguntas de múltipla escolha que testam conhecimentos antes de conceder novos cargos.
+5. `Eventos aleatórios` positivos ou negativos que modificam recompensas temporariamente, mantendo cada sessão imprevisível.
 
 ## 💻 Programa em execução
-A aplicação é executada em modo texto. Ao iniciar a classe `Main`, o terminal exibirá menus interativos para escolher trabalhos, comprar itens e acompanhar o progresso do personagem.
+(Em construção.)
 
 ## 🗺️ Instruções de execução
 1. Instale o [JDK 17](https://adoptium.net/) ou versão superior e certifique-se de que o comando `java` está disponível no terminal.
