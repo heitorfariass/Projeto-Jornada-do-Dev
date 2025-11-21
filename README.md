@@ -23,7 +23,16 @@ A experiência combina gerenciamento de recursos, evolução de habilidades e ev
 5. `Eventos aleatórios` positivos ou negativos que modificam recompensas temporariamente, mantendo cada sessão imprevisível.
 
 ## 💻 Programa em execução
-(Em construção.)
+-Iniciando o jogo:
+<img width="826" height="622" alt="Captura de tela 2025-11-21 085922" src="https://github.com/user-attachments/assets/77a9d5dc-4111-46b6-9446-5f1dc9740071" />
+
+-Prova para subir de cargo:
+<img width="929" height="504" alt="Captura de tela 2025-11-21 090220" src="https://github.com/user-attachments/assets/d5e55eca-1954-4800-80c5-ce97a53ebbc1" />
+
+- Easter Egg no cargo CEO:
+<img width="935" height="492" alt="Captura de tela 2025-11-20 232016" src="https://github.com/user-attachments/assets/a0159616-e7e2-4b8a-b0c7-6964958143ff" />
+
+
 
 ## 🗺️ Instruções de execução
 1. Instale o [JDK 17](https://adoptium.net/) ou versão superior e certifique-se de que o comando `java` está disponível no terminal.
@@ -33,7 +42,8 @@ A experiência combina gerenciamento de recursos, evolução de habilidades e ev
 5. No VS Code, também é possível usar a extensão "Extension Pack for Java" e acionar o botão **Run** diretamente na classe `Main` para compilar e iniciar o aplicativo automaticamente.
 
 ## 📨 Diagrama UML
-(Em construção.)
+![projetoJornadaDev (1)](https://github.com/user-attachments/assets/f9eca9fe-87fc-4a58-9764-2d28317e969d)
+
 
 ## 📦 Pacotes do código
 - `jornadadev`: contém a classe `Main`, ponto de entrada da aplicação.
