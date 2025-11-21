@@ -24,6 +24,7 @@ A experiência combina gerenciamento de recursos, evolução de habilidades e ev
 
 ## 💻 Programa em execução
 -Iniciando o jogo:
+
 <img width="826" height="622" alt="Captura de tela 2025-11-21 085922" src="https://github.com/user-attachments/assets/77a9d5dc-4111-46b6-9446-5f1dc9740071" />
 
 -Prova para subir de cargo:
