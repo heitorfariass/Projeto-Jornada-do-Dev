@@ -23,14 +23,16 @@ A experiência combina gerenciamento de recursos, evolução de habilidades e ev
 5. `Eventos aleatórios` positivos ou negativos que modificam recompensas temporariamente, mantendo cada sessão imprevisível.
 
 ## 💻 Programa em execução
--Iniciando o jogo:
+- Iniciando o jogo:
 
 <img width="826" height="622" alt="Captura de tela 2025-11-21 085922" src="https://github.com/user-attachments/assets/77a9d5dc-4111-46b6-9446-5f1dc9740071" />
 
--Prova para subir de cargo:
+- Prova para subir de cargo:
+
 <img width="929" height="504" alt="Captura de tela 2025-11-21 090220" src="https://github.com/user-attachments/assets/d5e55eca-1954-4800-80c5-ce97a53ebbc1" />
 
 - Easter Egg no cargo CEO:
+  
 <img width="935" height="492" alt="Captura de tela 2025-11-20 232016" src="https://github.com/user-attachments/assets/a0159616-e7e2-4b8a-b0c7-6964958143ff" />
 
 
